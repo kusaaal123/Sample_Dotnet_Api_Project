@@ -46,10 +46,10 @@ namespace Sample_Dotnet_Api_Project.Controllers
 
             var newProduct = new Product
             {
-                Id = Products.Max(p => p.Id) + 1,
+                Id = Products.Any() ? Products.Max(p => p.Id) + 1 : 1,
                 Name = request.Name,
                 Price = request.Price,
-                Description = request.Description
+                Description = request.Description ?? string.Empty
             };
 
             Products.Add(newProduct);
@@ -64,9 +64,12 @@ namespace Sample_Dotnet_Api_Project.Controllers
             if (product == null)
                 return NotFound($"Product with ID {id} not found");
 
-            product.Name = request.Name ?? product.Name;
-            product.Price = request.Price > 0 ? request.Price : product.Price;
-            product.Description = request.Description ?? product.Description;
+            if (!string.IsNullOrEmpty(request.Name))
+                product.Name = request.Name;
+            if (request.Price > 0)
+                product.Price = request.Price;
+            if (!string.IsNullOrEmpty(request.Description))
+                product.Description = request.Description;
 
             _logger.LogInformation("Product updated with ID: {id}", id);
             return Ok(product);
