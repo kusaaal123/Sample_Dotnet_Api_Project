@@ -3,6 +3,7 @@ name: .Net API CI
 on:
   push:
     branches:
+      - main
       - dev
 
 jobs:
