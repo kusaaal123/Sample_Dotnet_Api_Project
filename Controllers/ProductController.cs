@@ -10,7 +10,8 @@ namespace Sample_Dotnet_Api_Project.Controllers
         {
             new Product { Id = 1, Name = "Laptop", Price = 999.99m, Description = "High-performance laptop" },
             new Product { Id = 2, Name = "Mouse", Price = 29.99m, Description = "Wireless mouse" },
-            new Product { Id = 3, Name = "Keyboard", Price = 79.99m, Description = "Mechanical keyboard" }
+            new Product { Id = 3, Name = "Keyboard", Price = 79.99m, Description = "Mechanical keyboard" },
+            new Product { Id = 4, Name = "HeadPhone", Price = 45.99m, Description = "Head Phone" }
         };
 
         private readonly ILogger<ProductController> _logger;
